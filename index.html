@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Metsan Konteyner – Sağlam ve Hızlı Çözümler</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Teko:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-light: #F8FAFC;
+    --white: #FFFFFF;
+    --steel-dark: #0F172A;
+    --steel-mid: #1E293B;
+    --steel-light: #334155;
+    --orange: #F97316;
+    --orange-hover: #EA580C;
+    --text-main: #334155;
+    --text-muted: #64748B;
+    --border: #E2E8F0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--bg-light); color: var(--text-main); overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px);
+    border-bottom: 3px solid var(--orange);
+  }
+  .logo { font-family: 'Teko', sans-serif; font-size: 2rem; font-weight: 700; color: var(--white); letter-spacing: 1px; }
+  .logo span { color: var(--orange); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-size: 0.9rem; font-weight: 600; text-transform: uppercase; text-decoration: none; color: #CBD5E1; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--orange); }
+  .nav-cta { background: var(--orange); color: var(--white); padding: 0.6rem 1.4rem; border-radius: 4px; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
+  .nav-cta:hover { background: var(--orange-hover); }
+
+  .hero { min-height: 100vh; display: flex; align-items: center; padding: 80px 4rem 0; background: var(--steel-dark); position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; right: -10%; top: 0; width: 50%; height: 100%; background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255,255,255,0.03) 20px, rgba(255,255,255,0.03) 40px); transform: skewX(-15deg); }
+  .hero-content { max-width: 650px; position: relative; z-index: 1; }
+  .hero-tag { display: inline-block; background: rgba(249, 115, 22, 0.2); color: var(--orange); padding: 4px 12px; border-radius: 4px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1.5rem; border: 1px solid rgba(249, 115, 22, 0.4); }
+  .hero-title { font-family: 'Teko', sans-serif; font-size: 5rem; font-weight: 700; line-height: 0.9; color: var(--white); margin-bottom: 1.5rem; text-transform: uppercase; }
+  .hero-title span { color: var(--orange); }
+  .hero-desc { font-size: 1.1rem; line-height: 1.6; color: #94A3B8; margin-bottom: 2.5rem; }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { background: var(--orange); color: var(--white); padding: 1rem 2.5rem; border-radius: 4px; font-size: 0.95rem; font-weight: 600; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
+  .btn-primary:hover { background: var(--orange-hover); transform: translateY(-2px); }
+  .btn-outline { border: 2px solid #475569; color: var(--white); padding: 1rem 2.5rem; border-radius: 4px; font-size: 0.95rem; font-weight: 600; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
+  .btn-outline:hover { border-color: var(--orange); color: var(--orange); }
+
+  section { padding: 6rem 4rem; }
+  .section-label { color: var(--orange); font-weight: 800; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; margin-bottom: 0.5rem; }
+  .section-title { font-family: 'Teko', sans-serif; font-size: 3.5rem; font-weight: 700; color: var(--steel-dark); line-height: 1; margin-bottom: 1rem; text-transform: uppercase; }
+  .section-sub { font-size: 1.05rem; color: var(--text-muted); max-width: 600px; margin-bottom: 3rem; }
+
+  .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
+  .product-card { background: var(--white); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; transition: all 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.02); display: flex; flex-direction: column; }
+  .product-card:hover { transform: translateY(-5px); box-shadow: 0 12px 20px rgba(0,0,0,0.08); border-color: var(--orange); }
+  .product-img { height: 220px; background: #E2E8F0; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
+  .product-img img { width: 100%; height: 100%; object-fit: cover; }
+  .product-badge { position: absolute; top: 12px; right: 12px; background: var(--steel-dark); color: var(--white); font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; }
+  .product-body { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+  .product-cat { color: var(--orange); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .product-name { font-size: 1.25rem; font-weight: 800; color: var(--steel-dark); margin-bottom: 0.5rem; line-height: 1.3; }
+  .product-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1.5rem; flex-grow: 1; }
+  .product-order { background: var(--steel-light); color: var(--white); padding: 0.8rem; text-align: center; border-radius: 4px; font-weight: 600; text-decoration: none; transition: background 0.2s; display: block; width: 100%; }
+  .product-order:hover { background: var(--orange); }
+
+  #iletisim { background: var(--steel-dark); color: var(--white); text-align: center; }
+  #iletisim .section-title { color: var(--white); margin: 0 auto 1rem; }
+  #iletisim .section-sub { color: #94A3B8; margin: 0 auto 3rem; }
+  .contact-cards { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; }
+  .contact-card { background: var(--steel-mid); padding: 2rem; border-radius: 6px; min-width: 250px; border-bottom: 4px solid var(--orange); }
+  .contact-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .contact-label { color: #94A3B8; font-size: 0.85rem; text-transform: uppercase; font-weight: 700; margin-bottom: 0.5rem; }
+  .contact-val { font-size: 1.2rem; font-weight: 800; color: var(--white); }
+  .whatsapp-btn { background: #25D366; color: white; padding: 1.2rem 3rem; border-radius: 4px; font-size: 1.1rem; font-weight: 700; text-decoration: none; display: inline-block; transition: transform 0.2s; }
+  .whatsapp-btn:hover { transform: scale(1.05); }
+
+  footer { background: #020617; padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; color: #64748B; font-size: 0.9rem; }
+  .footer-logo { font-family: 'Teko', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--white); }
+  .footer-logo span { color: var(--orange); }
+  .footer-admin { color: #64748B; text-decoration: none; font-weight: 600; }
+  .footer-admin:hover { color: var(--orange); }
+
+  .float-wa { position: fixed; bottom: 2rem; right: 2rem; z-index: 999; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(37,211,102,0.4); text-decoration: none; transition: transform 0.2s; }
+  .float-wa:hover { transform: scale(1.1); }
+  .float-wa svg { width: 32px; height: 32px; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem; }
+    .nav-links { display: none; }
+    .hero { padding: 120px 2rem 4rem; }
+    .hero-title { font-size: 3.5rem; }
+    section { padding: 4rem 2rem; }
+    footer { padding: 2rem; flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">METSAN<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#urunler">Konteynerler</a></li>
+    <li><a href="#hakkimizda">Hakkımızda</a></li>
+    <li><a href="#iletisim">İletişim</a></li>
+  </ul>
+  <a href="https://wa.me/905324649334?text=Merhaba%2C%20fiyat%20almak%20istiyorum." class="nav-cta" target="_blank">Fiyat Teklifi Al</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">Güvenilir Endüstriyel Çözümler</div>
+    <h1 class="hero-title">Dünyanın Yükünü<br><span>Hayatın Alanını</span> Taşıyoruz</h1>
+    <p class="hero-desc">İhtiyacınıza uygun sıfır ve ikinci el yük, ofis ve yaşam konteynerleri. Türkiye'nin her yerine güvenli ve hızlı teslimat.</p>
+    <div class="hero-btns">
+      <a href="#urunler" class="btn-primary">Ürünleri İncele</a>
+      <a href="https://wa.me/905324649334?text=Merhaba%2C%20bilgi%20almak%20istiyorum." class="btn-outline" target="_blank">WhatsApp'tan Ulaşın</a>
+    </div>
+  </div>
+</section>
+
+<section id="urunler">
+  <div class="section-label">Satış & Kiralama</div>
+  <h2 class="section-title">Konteyner Çeşitleri</h2>
+  <p class="section-sub">Stoklarımızdaki güncel sıfır ve ikinci el konteyner seçeneklerimizi aşağıdan inceleyebilir, detaylı bilgi ve ölçü için bize ulaşabilirsiniz.</p>
+  
+  <div class="products-grid" id="productsGrid">
+    <p>Ürünler yükleniyor...</p>
+  </div>
+</section>
+
+<section id="iletisim">
+  <div class="section-label">Bize Ulaşın</div>
+  <h2 class="section-title">Hızlı İletişim Hattı</h2>
+  <p class="section-sub">Stok bilgisi, teknik detaylar ve nakliye dahil fiyat teklifleri için uzman ekibimizle hemen görüşün.</p>
+  
+  <div class="contact-cards">
+    <div class="contact-card">
+      <div class="contact-icon">📞</div>
+      <div class="contact-label">Telefon & WhatsApp</div>
+      <div class="contact-val">0532 464 93 34</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">🚚</div>
+      <div class="contact-label">Nakliye Ağı</div>
+      <div class="contact-val">Tüm Türkiye</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">🏢</div>
+      <div class="contact-label">Hizmetler</div>
+      <div class="contact-val">Satış & Revizyon</div>
+    </div>
+  </div>
+
+  <a href="https://wa.me/905324649334?text=Merhaba%2C%20Metsan%20Konteyner%20ile%20görüşmek%20istiyorum." class="whatsapp-btn" target="_blank">WhatsApp'tan Mesaj Gönder</a>
+</section>
+
+<footer>
+  <div class="footer-logo">METSAN<span>.</span></div>
+  <div>© 2026 Metsan Konteyner. Tüm hakları saklıdır.</div>
+  <a href="admin.html" class="footer-admin">Sistem Girişi</a>
+</footer>
+
+<a href="https://wa.me/905324649334?text=Merhaba%2C%20bilgi%20almak%20istiyorum." class="float-wa" target="_blank">
+  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.131.558 4.133 1.532 5.875L0 24l6.293-1.507A11.946 11.946 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.651-.52-5.162-1.418L3 21.5l.937-3.74A9.963 9.963 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+</a>
+
+<script>
+const WA = '905324649334';
+
+function productCardHTML(p) {
+  const waMsg = encodeURIComponent(`Merhaba, ${p.name} hakkında bilgi ve fiyat almak istiyorum.`);
+  const waLink = `https://wa.me/${WA}?text=${waMsg}`;
+  
+  const imgHTML = p.image
+    ? `<img src="${p.image}" alt="${p.name}" />`
+    : `<div style="color:#94A3B8; font-weight:600; text-transform:uppercase;">Görsel Yok</div>`;
+    
+  return `
+    <div class="product-card">
+      <div class="product-img">
+        ${imgHTML}
+        <div class="product-badge">${p.condition}</div>
+      </div>
+      <div class="product-body">
+        <div class="product-cat">${p.category}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.desc}</div>
+        <a href="${waLink}" class="product-order" target="_blank">Fiyat Sor / Sipariş Ver</a>
+      </div>
+    </div>`;
+}
+
+async function loadProducts() {
+  const grid = document.getElementById('productsGrid');
+  try {
+    const res = await fetch('products.json?v=' + Date.now());
+    const products = await res.json();
+    const active = products.filter(p => p.active !== false);
+    grid.innerHTML = active.length ? active.map(productCardHTML).join('') : '<p>Henüz ürün eklenmemiş.</p>';
+  } catch(e) {
+    grid.innerHTML = '<p>Ürünler yüklenirken bir hata oluştu.</p>';
+  }
+}
+
+loadProducts();
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "1",
+    "name": "20ft Standart Yük Konteyneri",
+    "desc": "Uluslararası taşımacılığa uygun, su ve rüzgar geçirmez, ISO standartlarında 20'lik yük konteyneri.",
+    "condition": "Sıfır",
+    "category": "Yük Konteyneri",
+    "image": "",
+    "active": true
+  },
+  {
+    "id": "2",
+    "name": "Şantiye Ofis Konteyneri (3x6m)",
+    "desc": "Elektrik tesisatı hazır, sandviç panel yalıtımlı, pencereli standart ofis çözümü.",
+    "condition": "İkinci El",
+    "category": "Ofis Konteyneri",
+    "image": "",
+    "active": true
+  },
+  {
+    "id": "3",
+    "name": "Modüler Yaşam Konteyneri",
+    "desc": "İçerisinde WC, duş ve mutfak nişi bulunan, anında kullanıma hazır yaşam alanı.",
+    "condition": "Sıfır",
+    "category": "Yaşam Konteyneri",
+    "image": "",
+    "active": true
+  }
+]
