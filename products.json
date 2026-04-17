@@ -1,16 +1,5 @@
 [
   {
-    "id": "1",
-    "name": "20ft Standart Yük Konteyneri",
-    "desc": "Uluslararası taşımacılığa uygun, su ve rüzgar geçirmez, ISO standartlarında 20'lik yük konteyneri. İç ve dış aksamı tamamen revize edilmiştir.",
-    "condition": "Sıfır",
-    "category": "Yük Konteyneri",
-    "images": [
-      "https://i.ibb.co/3skskP5/container-main.jpg"
-    ],
-    "active": true
-  },
-  {
     "id": "2",
     "name": "Şantiye Ofis Konteyneri (3x6m)",
     "desc": "Elektrik tesisatı hazır, sandviç panel yalıtımlı, pencereli standart ofis çözümü. Hemen kullanıma hazır.",
