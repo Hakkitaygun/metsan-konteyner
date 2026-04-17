@@ -18,17 +18,5 @@
     "category": "Ofis Konteyneri",
     "images": [],
     "active": true
-  },
-  {
-    "id": "1776376466020",
-    "name": "masa5",
-    "desc": "aaaaaa",
-    "condition": "İkinci El",
-    "category": "Özel Üretim",
-    "images": [
-      "https://i.ibb.co/rKvZ2fxp/indir-1.jpg",
-      "https://i.ibb.co/5xJzDhW3/indir.jpg"
-    ],
-    "active": true
   }
 ]
