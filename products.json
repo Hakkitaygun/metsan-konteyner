@@ -18,17 +18,5 @@
     "category": "Ofis Konteyneri",
     "images": [],
     "active": true
-  },
-  {
-    "id": "1776433654837",
-    "name": "Çalışma masası2",
-    "desc": "aaa",
-    "condition": "Sıfır",
-    "category": "Yük Konteyneri",
-    "images": [
-      "https://i.ibb.co/rKvZ2fxp/indir-1.jpg",
-      "https://i.ibb.co/5xJzDhW3/indir.jpg"
-    ],
-    "active": true
   }
 ]
