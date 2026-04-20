@@ -185,6 +185,10 @@
           <option value="Revizyonlu">Revizyonlu</option>
         </select>
       </div>
+      <div class="full form-group">
+        <label>Fiyat (İsteğe Bağlı)</label>
+        <input type="text" id="fPrice" placeholder="Örn: 45.000 TL, 1.500 $ veya Fiyat Sorunuz" />
+      </div>
 
       <div class="full form-group" style="background: var(--surface2); padding: 1rem; border-radius: 6px; border: 1px dashed var(--border);">
         <label>Ürün Görselleri (Bilgisayardan Seç)</label>
@@ -256,11 +260,10 @@ async function ghReq(method, path, body = null) {
   const opts = { 
     method, 
     headers: { Authorization: `token ${cfg.token}`, Accept: 'application/vnd.github.v3+json' },
-    cache: 'no-store' /* Tarayıcı hafızasını zorla kapatır */
+    cache: 'no-store'
   };
   if (body) { opts.headers['Content-Type'] = 'application/json'; opts.body = JSON.stringify(body); }
   
-  /* Linkin sonuna anlık saati ekleyerek tarayıcının eski dosyayı vermesini engelleriz */
   const url = method === 'GET' 
     ? `https://api.github.com/repos/${cfg.user}/${cfg.repo}/contents/${path}?t=${Date.now()}` 
     : `https://api.github.com/repos/${cfg.user}/${cfg.repo}/contents/${path}`;
@@ -345,6 +348,7 @@ function openModal(id) {
     document.getElementById('fDesc').value = p.desc;
     document.getElementById('fCondition').value = p.condition || 'Sıfır';
     document.getElementById('fCategory').value = p.category;
+    document.getElementById('fPrice').value = p.price || '';
     document.getElementById('fActive').checked = p.active !== false;
     currentImages = p.images ? [...p.images] : (p.image ? [p.image] : []);
   } else {
@@ -354,6 +358,7 @@ function openModal(id) {
     document.getElementById('fDesc').value = '';
     document.getElementById('fCondition').value = 'Sıfır';
     document.getElementById('fCategory').value = 'Yük Konteyneri';
+    document.getElementById('fPrice').value = '';
     document.getElementById('fActive').checked = true;
     currentImages = [];
   }
@@ -372,6 +377,7 @@ async function saveProduct() {
   const product = {
     id: editId || Date.now().toString(),
     name, desc,
+    price: v('fPrice').trim(),
     condition: v('fCondition'),
     category: v('fCategory'),
     images: currentImages,
@@ -404,7 +410,7 @@ async function uploadImage(input) {
   
   const formData = new FormData(); formData.append("image", file);
   try {
-    const apiKey = "4004cadf99eaa682de01f4877081db83"; // SİZİN API ANAHTARINIZ EKLENDİ
+    const apiKey = "4004cadf99eaa682de01f4877081db83"; 
     const res = await fetch(`https://api.imgbb.com/1/upload?key=${apiKey}`, { method: "POST", body: formData });
     const data = await res.json();
     
