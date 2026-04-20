@@ -45,5 +45,17 @@
       "https://i.ibb.co/rKvZ2fxp/indir-1.jpg"
     ],
     "active": true
+  },
+  {
+    "id": "1776691391652",
+    "name": "Çelik Konteyner",
+    "desc": "çelik",
+    "price": "64000",
+    "condition": "Sıfır",
+    "category": "Yük Konteyneri",
+    "images": [
+      "https://i.ibb.co/DHX8nktL/Whats-App-mage-2026-04-20-at-16-21-45.jpg"
+    ],
+    "active": true
   }
 ]
