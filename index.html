@@ -86,7 +86,6 @@
     .c-thumb { width: 70px; height: 70px; object-fit: cover; cursor: pointer; border: 2px solid transparent; border-radius: 4px; transition: 0.2s; }
     .c-thumb.active { border-color: var(--orange); }
     
-    /* GÜNCELLENEN KAYDIRMA KISMI BURADA */
     .c-modal-info { padding: 2.5rem; display: flex; flex-direction: column; overflow-y: auto; height: 100%; max-height: 90vh; }
     .c-modal-info::-webkit-scrollbar { width: 6px; }
     .c-modal-info::-webkit-scrollbar-track { background: var(--bg-light); border-radius: 8px; }
@@ -203,7 +202,7 @@
       <div class="c-modal-name" id="mName">Ürün Adı</div>
       <div class="c-modal-badge" id="mCondition">Durum</div>
       <div class="c-modal-desc" id="mDesc">Açıklama metni...</div>
-      <a href="#" id="mOrder" class="btn-primary" style="text-align:center; width:100%; display:block; padding:1.2rem;" target="_blank">Bu Ürün İçin Fiyat Al</a>
+      <a href="#" id="mOrder" class="btn-primary" style="text-align:center; width:100%; display:block; padding:1.2rem;" target="_blank">WhatsApp'tan Sipariş & Bilgi</a>
     </div>
   </div>
 </div>
@@ -273,16 +272,21 @@ function openProductDetail(id) {
   document.getElementById('mDesc').textContent = p.desc;
   
   const mPrice = document.getElementById('mPrice');
+  const mOrder = document.getElementById('mOrder');
+  
+  // DİNAMİK BUTON YAZISI
   if(p.price) {
     mPrice.textContent = formatPrice(p.price);
     mPrice.style.display = 'block';
+    mOrder.textContent = "WhatsApp'tan Sipariş & Bilgi";
   } else {
     mPrice.style.display = 'none';
+    mOrder.textContent = "Bu Ürün İçin Fiyat Al";
   }
   
   const priceText = p.price ? ` (${formatPrice(p.price)})` : '';
   const waMsg = encodeURIComponent(`Merhaba, web sitenizdeki "${p.name}"${priceText} (${p.condition}) hakkında detaylı bilgi almak istiyorum.`);
-  document.getElementById('mOrder').href = `https://wa.me/${WA}?text=${waMsg}`;
+  mOrder.href = `https://wa.me/${WA}?text=${waMsg}`;
 
   const mainImgBox = document.getElementById('mMainImgBox');
   const thumbsBox = document.getElementById('mThumbs');
