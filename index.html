@@ -66,10 +66,13 @@
     .product-badge { position: absolute; top: 12px; right: 12px; background: var(--steel-dark); color: var(--white); font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; }
     .product-body { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
     .product-cat { color: var(--orange); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.3rem; }
-    .product-name { font-size: 1.25rem; font-weight: 800; color: var(--steel-dark); margin-bottom: 0.1rem; line-height: 1.3; }
-    .product-price { font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--orange); margin-top: 0.2rem; margin-bottom: 0.8rem; line-height: 1; }
+    .product-name { font-size: 1.25rem; font-weight: 800; color: var(--steel-dark); margin-bottom: 0.5rem; line-height: 1.3; }
     .product-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1.5rem; flex-grow: 1; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-    .product-order { background: var(--steel-light); color: var(--white); padding: 0.8rem; text-align: center; border-radius: 4px; font-weight: 600; text-decoration: none; transition: background 0.2s; display: block; width: 100%; }
+    
+    /* YENİ ALT KISIM DÜZENİ */
+    .product-footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%; }
+    .product-price { font-family: 'Inter', sans-serif; font-size: 1.3rem; font-weight: 800; color: var(--orange); margin: 0; line-height: 1; white-space: nowrap; }
+    .product-order { background: var(--steel-light); color: var(--white); padding: 0.8rem; text-align: center; border-radius: 4px; font-weight: 600; text-decoration: none; transition: background 0.2s; flex: 1; }
     .product-order:hover { background: var(--orange); }
 
     /* MÜŞTERİ ÜRÜN DETAY MODALI */
@@ -204,18 +207,15 @@
 const WA = '905324649334';
 let allProducts = [];
 
-// Fiyatı formatlayan yardımcı fonksiyon
 function formatPrice(priceStr) {
   if (!priceStr) return '';
-  // Sadece rakamları al
   const num = parseInt(priceStr.replace(/[^0-9]/g, ''));
-  if (isNaN(num)) return priceStr; // Rakam değilse ham halini döndür (Örn: "Fiyat Sorunuz")
+  if (isNaN(num)) return priceStr; 
   
-  // Türkçe formatlama (TL'yi sağa koyar)
   return new Intl.NumberFormat('tr-TR', { 
     style: 'currency', 
     currency: 'TRY', 
-    minimumFractionDigits: 0 // Kuruşları gösterme
+    minimumFractionDigits: 0
   }).format(num);
 }
 
@@ -225,10 +225,8 @@ function productCardHTML(p) {
     ? `<img src="${firstImage}" alt="${p.name}" />` 
     : `<div style="color:#94A3B8; font-weight:600; text-transform:uppercase;">Görsel Yok</div>`;
     
-  // Formatlanmış fiyatı kullanıyoruz
   const priceHTML = p.price ? `<div class="product-price">${formatPrice(p.price)}</div>` : '';
     
-  // Hiyerarşiyi Kategori -> Fiyat -> Ad olarak güncelledik
   return `
     <div class="product-card" onclick="openProductDetail('${p.id}')">
       <div class="product-img">
@@ -237,10 +235,12 @@ function productCardHTML(p) {
       </div>
       <div class="product-body">
         <div class="product-cat">${p.category}</div>
-        ${priceHTML}
         <div class="product-name">${p.name}</div>
         <div class="product-desc">${p.desc}</div>
-        <div class="product-order">İncele & Bilgi Al</div>
+        <div class="product-footer">
+          ${priceHTML}
+          <div class="product-order">İncele & Bilgi Al</div>
+        </div>
       </div>
     </div>`;
 }
@@ -248,7 +248,6 @@ function productCardHTML(p) {
 async function loadProducts() {
   const grid = document.getElementById('productsGrid');
   try {
-    // 'cache: no-store' ve anlık zaman damgası tarayıcıyı dosyayı yeniden indirmeye zorlar
     const res = await fetch('products.json?t=' + Date.now(), { cache: 'no-store' });
     const data = await res.json();
     allProducts = data;
@@ -280,7 +279,6 @@ function openProductDetail(id) {
   const waMsg = encodeURIComponent(`Merhaba, web sitenizdeki "${p.name}"${priceText} (${p.condition}) hakkında detaylı bilgi almak istiyorum.`);
   document.getElementById('mOrder').href = `https://wa.me/${WA}?text=${waMsg}`;
 
-  // Galeri Yönetimi
   const mainImgBox = document.getElementById('mMainImgBox');
   const thumbsBox = document.getElementById('mThumbs');
   let imgs = p.images && p.images.length > 0 ? p.images : (p.image ? [p.image] : []);
