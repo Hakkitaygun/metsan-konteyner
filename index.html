@@ -56,7 +56,13 @@
     section { padding: 6rem 4rem; }
     .section-label { color: var(--orange); font-weight: 800; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; margin-bottom: 0.5rem; }
     .section-title { font-family: 'Teko', sans-serif; font-size: 3.5rem; font-weight: 700; color: var(--steel-dark); line-height: 1; margin-bottom: 1rem; text-transform: uppercase; }
-    .section-sub { font-size: 1.05rem; color: var(--text-muted); max-width: 600px; margin-bottom: 3rem; }
+    .section-sub { font-size: 1.05rem; color: var(--text-muted); max-width: 600px; margin-bottom: 2rem; }
+
+    /* FİLTRELEME BUTONLARI CSS */
+    .filter-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .filter-btn { background: transparent; border: 2px solid var(--border); color: var(--text-muted); padding: 0.6rem 1.2rem; border-radius: 30px; font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px; }
+    .filter-btn:hover { border-color: var(--orange); color: var(--orange); }
+    .filter-btn.active { background: var(--orange); border-color: var(--orange); color: var(--white); }
 
     .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
     .product-card { background: var(--white); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; transition: all 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.02); display: flex; flex-direction: column; cursor: pointer; }
@@ -158,8 +164,17 @@
 <section id="urunler">
   <div class="section-label">Satış & Kiralama</div>
   <h2 class="section-title">Konteyner Çeşitleri</h2>
-  <p class="section-sub">Stoklarımızdaki güncel sıfır ve ikinci el konteyner seçeneklerimizi aşağıdan inceleyebilir, detaylı bilgi ve fotoğraflar için ürün kartlarına tıklayabilirsiniz.</p>
+  <p class="section-sub">Stoklarımızdaki güncel sıfır ve ikinci el konteyner seçeneklerimizi aşağıdan inceleyebilirsiniz. İlgilendiğiniz kategoriye tıklayarak ürünleri filtreleyebilirsiniz.</p>
   
+  <div class="filter-tabs" id="filterTabs">
+    <button class="filter-btn active" onclick="filterProducts('all', this)">Tümü</button>
+    <button class="filter-btn" onclick="filterProducts('Yük Konteyneri', this)">Yük Konteyneri</button>
+    <button class="filter-btn" onclick="filterProducts('Ofis Konteyneri', this)">Ofis Konteyneri</button>
+    <button class="filter-btn" onclick="filterProducts('Yaşam Konteyneri', this)">Yaşam</button>
+    <button class="filter-btn" onclick="filterProducts('Sıfır', this)">Sıfır İlanlar</button>
+    <button class="filter-btn" onclick="filterProducts('İkinci El', this)">İkinci El</button>
+  </div>
+
   <div class="products-grid" id="productsGrid">
     <p>Ürünler yükleniyor...</p>
   </div>
@@ -249,14 +264,38 @@ function productCardHTML(p) {
     </div>`;
 }
 
+// YENİ FİLTRELEME SİSTEMİ
+function filterProducts(filterVal, btnElement) {
+  // Butonların görsel aktiflik durumunu güncelle
+  if (btnElement) {
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    btnElement.classList.add('active');
+  }
+  
+  const activeProds = allProducts.filter(p => p.active !== false);
+  let filtered = activeProds;
+  
+  // Eğer "Tümü" seçilmediyse kategoriye veya duruma göre süz
+  if(filterVal !== 'all') {
+    filtered = activeProds.filter(p => p.category === filterVal || p.condition === filterVal);
+  }
+  
+  const grid = document.getElementById('productsGrid');
+  grid.innerHTML = filtered.length 
+    ? filtered.map(productCardHTML).join('') 
+    : '<p style="grid-column: 1/-1; text-align:center; padding: 3rem; color: #64748B; font-weight: 600;">Bu kategoride henüz ürün bulunmuyor.</p>';
+}
+
 async function loadProducts() {
   const grid = document.getElementById('productsGrid');
   try {
     const res = await fetch('products.json?t=' + Date.now(), { cache: 'no-store' });
     const data = await res.json();
     allProducts = data;
-    const active = allProducts.filter(p => p.active !== false);
-    grid.innerHTML = active.length ? active.map(productCardHTML).join('') : '<p>Henüz ürün eklenmemiş.</p>';
+    
+    // Sayfa ilk yüklendiğinde "Tümü" filtresini otomatik çalıştırır
+    const firstBtn = document.querySelector('.filter-btn');
+    filterProducts('all', firstBtn);
   } catch(e) {
     grid.innerHTML = '<p>Ürünler yüklenirken bir hata oluştu.</p>';
   }
@@ -274,7 +313,6 @@ function openProductDetail(id) {
   const mPrice = document.getElementById('mPrice');
   const mOrder = document.getElementById('mOrder');
   
-  // DİNAMİK BUTON YAZISI
   if(p.price) {
     mPrice.textContent = formatPrice(p.price);
     mPrice.style.display = 'block';
