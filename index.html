@@ -56,6 +56,7 @@
     .section-label { color: var(--orange); font-weight: 800; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; margin-bottom: 0.5rem; }
     .section-title { font-family: 'Teko', sans-serif; font-size: 3.5rem; font-weight: 700; color: var(--steel-dark); line-height: 1; margin-bottom: 1rem; text-transform: uppercase; }
     
+    /* FİLTRELEME BUTONLARI CSS */
     .filter-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
     .filter-btn { background: transparent; border: 2px solid var(--border); color: var(--text-muted); padding: 0.6rem 1.2rem; border-radius: 30px; font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; text-transform: uppercase; }
     .filter-btn.active { background: var(--orange); border-color: var(--orange); color: var(--white); }
@@ -72,7 +73,8 @@
     
     .product-footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%; }
     .product-price { font-family: 'Inter', sans-serif; font-size: 1.3rem; font-weight: 800; color: var(--orange); white-space: nowrap; }
-    .product-order { background: var(--steel-light); color: var(--white); padding: 0.8rem; text-align: center; border-radius: 4px; font-weight: 600; text-decoration: none; flex: 1; }
+    .product-order { background: var(--steel-light); color: var(--white); padding: 0.8rem; text-align: center; border-radius: 4px; font-weight: 600; text-decoration: none; flex: 1; transition: background 0.2s; }
+    .product-order:hover { background: var(--orange); }
 
     .c-modal-overlay { position: fixed; inset: 0; background: rgba(15,23,42,0.85); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 2rem; backdrop-filter: blur(5px); }
     .c-modal-overlay.open { display: flex; }
