@@ -69,5 +69,19 @@
       "https://i.ibb.co/DHX8nktL/Whats-App-mage-2026-04-20-at-16-21-45.jpg"
     ],
     "active": true
+  },
+  {
+    "id": "1777393114394",
+    "name": "Xc",
+    "desc": "Xc",
+    "price": "",
+    "condition": "Sıfır",
+    "category": "Yük Konteyneri",
+    "images": [
+      "https://i.ibb.co/NgtFTrzb/MG-2325.jpg",
+      "https://i.ibb.co/4ndx2qCV/MG-2324.jpg",
+      "https://i.ibb.co/pjryDWsM/MG-2323.jpg"
+    ],
+    "active": true
   }
 ]
