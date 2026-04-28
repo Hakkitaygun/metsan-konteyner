@@ -31,9 +31,7 @@
     html { scroll-behavior: smooth; }
     body { font-family: 'Inter', sans-serif; background: var(--bg-light); color: var(--text-main); overflow-x: hidden; }
 
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 4rem; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 3px solid var(--orange); }
-    .logo { font-family: 'Teko', sans-serif; font-size: 2rem; font-weight: 700; color: var(--white); letter-spacing: 1px; }
-    .logo span { color: var(--orange); }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0.8rem 4rem; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 3px solid var(--orange); }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a { font-size: 0.9rem; font-weight: 600; text-transform: uppercase; text-decoration: none; color: #CBD5E1; transition: color 0.2s; }
     .nav-links a:hover { color: var(--orange); }
@@ -58,7 +56,6 @@
     .section-title { font-family: 'Teko', sans-serif; font-size: 3.5rem; font-weight: 700; color: var(--steel-dark); line-height: 1; margin-bottom: 1rem; text-transform: uppercase; }
     .section-sub { font-size: 1.05rem; color: var(--text-muted); max-width: 600px; margin-bottom: 2rem; }
 
-    /* FİLTRELEME BUTONLARI CSS */
     .filter-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
     .filter-btn { background: transparent; border: 2px solid var(--border); color: var(--text-muted); padding: 0.6rem 1.2rem; border-radius: 30px; font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px; }
     .filter-btn:hover { border-color: var(--orange); color: var(--orange); }
@@ -80,7 +77,6 @@
     .product-order { background: var(--steel-light); color: var(--white); padding: 0.8rem; text-align: center; border-radius: 4px; font-weight: 600; text-decoration: none; transition: background 0.2s; flex: 1; }
     .product-order:hover { background: var(--orange); }
 
-    /* MÜŞTERİ ÜRÜN DETAY MODALI */
     .c-modal-overlay { position: fixed; inset: 0; background: rgba(15,23,42,0.85); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 2rem; backdrop-filter: blur(5px); }
     .c-modal-overlay.open { display: flex; }
     .c-modal-box { background: var(--white); border-radius: 8px; width: 100%; max-width: 900px; max-height: 90vh; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
@@ -140,9 +136,10 @@
 <body>
 
 <nav>
-  <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
-    <img src="logo.png" alt="Metsan Logo" style="height: 55px; width: auto; object-fit: contain;">
+  <a href="index.html" style="display: flex; align-items: center; text-decoration: none; background: #FFFFFF; padding: 6px 16px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+    <img src="logo.png" alt="Metsan Logo" style="height: 40px; width: auto; object-fit: contain;">
   </a>
+  
   <ul class="nav-links">
     <li><a href="#urunler">Konteynerler</a></li>
     <li><a href="#hakkimizda">Hakkımızda</a></li>
@@ -182,6 +179,12 @@
   </div>
 </section>
 
+<section id="hakkimizda">
+  <div class="section-label">Kurumsal</div>
+  <h2 class="section-title">Metsan Konteyner</h2>
+  <p class="section-sub">Metsan Konteyner olarak, yılların verdiği tecrübe ile endüstriyel konteyner çözümlerinde öncü rol oynamaktayız. Kalite, sağlamlık ve müşteri memnuniyeti odaklı hizmet anlayışımızla Türkiye'nin her noktasına hızlı ve güvenli teslimat sağlıyoruz.</p>
+</section>
+
 <section id="iletisim">
   <div class="section-label">Bize Ulaşın</div>
   <h2 class="section-title">Hızlı İletişim Hattı</h2>
@@ -201,10 +204,6 @@
   <div>© 2026 Metsan Konteyner. Tüm hakları saklıdır.</div>
   <a href="admin.html" class="footer-admin">Sistem Girişi</a>
 </footer>
-
-<a href="https://wa.me/905324649334?text=Merhaba%2C%20bilgi%20almak%20istiyorum." class="float-wa" target="_blank">
-  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.131.558 4.133 1.532 5.875L0 24l6.293-1.507A11.946 11.946 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.651-.52-5.162-1.418L3 21.5l.937-3.74A9.963 9.963 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-</a>
 
 <div class="c-modal-overlay" id="productModal">
   <div class="c-modal-box">
@@ -232,12 +231,7 @@ function formatPrice(priceStr) {
   if (!priceStr) return '';
   const num = parseInt(priceStr.replace(/[^0-9]/g, ''));
   if (isNaN(num)) return priceStr; 
-  
-  return new Intl.NumberFormat('tr-TR', { 
-    style: 'currency', 
-    currency: 'TRY', 
-    minimumFractionDigits: 0
-  }).format(num);
+  return new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY', minimumFractionDigits: 0 }).format(num);
 }
 
 function productCardHTML(p) {
@@ -266,26 +260,15 @@ function productCardHTML(p) {
     </div>`;
 }
 
-// YENİ FİLTRELEME SİSTEMİ
 function filterProducts(filterVal, btnElement) {
-  // Butonların görsel aktiflik durumunu güncelle
   if (btnElement) {
     document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
     btnElement.classList.add('active');
   }
-  
   const activeProds = allProducts.filter(p => p.active !== false);
-  let filtered = activeProds;
-  
-  // Eğer "Tümü" seçilmediyse kategoriye veya duruma göre süz
-  if(filterVal !== 'all') {
-    filtered = activeProds.filter(p => p.category === filterVal || p.condition === filterVal);
-  }
-  
+  let filtered = filterVal === 'all' ? activeProds : activeProds.filter(p => p.category === filterVal || p.condition === filterVal);
   const grid = document.getElementById('productsGrid');
-  grid.innerHTML = filtered.length 
-    ? filtered.map(productCardHTML).join('') 
-    : '<p style="grid-column: 1/-1; text-align:center; padding: 3rem; color: #64748B; font-weight: 600;">Bu kategoride henüz ürün bulunmuyor.</p>';
+  grid.innerHTML = filtered.length ? filtered.map(productCardHTML).join('') : '<p style="grid-column:1/-1; text-align:center; padding:3rem; color:#64748B;">Bu kategoride ürün bulunmuyor.</p>';
 }
 
 async function loadProducts() {
@@ -294,10 +277,7 @@ async function loadProducts() {
     const res = await fetch('products.json?t=' + Date.now(), { cache: 'no-store' });
     const data = await res.json();
     allProducts = data;
-    
-    // Sayfa ilk yüklendiğinde "Tümü" filtresini otomatik çalıştırır
-    const firstBtn = document.querySelector('.filter-btn');
-    filterProducts('all', firstBtn);
+    filterProducts('all', document.querySelector('.filter-btn'));
   } catch(e) {
     grid.innerHTML = '<p>Ürünler yüklenirken bir hata oluştu.</p>';
   }
@@ -306,15 +286,12 @@ async function loadProducts() {
 function openProductDetail(id) {
   const p = allProducts.find(x => x.id === id);
   if(!p) return;
-
   document.getElementById('mCat').textContent = p.category;
   document.getElementById('mName').textContent = p.name;
   document.getElementById('mCondition').textContent = p.condition;
   document.getElementById('mDesc').textContent = p.desc;
-  
   const mPrice = document.getElementById('mPrice');
   const mOrder = document.getElementById('mOrder');
-  
   if(p.price) {
     mPrice.textContent = formatPrice(p.price);
     mPrice.style.display = 'block';
@@ -323,29 +300,20 @@ function openProductDetail(id) {
     mPrice.style.display = 'none';
     mOrder.textContent = "Bu Ürün İçin Fiyat Al";
   }
-  
   const priceText = p.price ? ` (${formatPrice(p.price)})` : '';
-  const waMsg = encodeURIComponent(`Merhaba, web sitenizdeki "${p.name}"${priceText} (${p.condition}) hakkında detaylı bilgi almak istiyorum.`);
+  const waMsg = encodeURIComponent(`Merhaba, web sitenizdeki "${p.name}"${priceText} (${p.condition}) hakkında bilgi almak istiyorum.`);
   mOrder.href = `https://wa.me/${WA}?text=${waMsg}`;
 
   const mainImgBox = document.getElementById('mMainImgBox');
   const thumbsBox = document.getElementById('mThumbs');
   let imgs = p.images && p.images.length > 0 ? p.images : (p.image ? [p.image] : []);
-
   if(imgs.length > 0) {
     mainImgBox.innerHTML = `<img src="${imgs[0]}" style="width:100%; height:100%; object-fit:cover; border-radius:6px;" id="mMainImg" />`;
-    if(imgs.length > 1) {
-      thumbsBox.innerHTML = imgs.map((img, idx) => `
-        <img src="${img}" class="c-thumb ${idx===0 ? 'active' : ''}" onclick="changeGalleryImg(this, '${img}')" />
-      `).join('');
-    } else {
-      thumbsBox.innerHTML = '';
-    }
+    thumbsBox.innerHTML = imgs.length > 1 ? imgs.map((img, idx) => `<img src="${img}" class="c-thumb ${idx===0 ? 'active' : ''}" onclick="changeGalleryImg(this, '${img}')" />`).join('') : '';
   } else {
     mainImgBox.innerHTML = 'Görsel Yok';
     thumbsBox.innerHTML = '';
   }
-
   document.getElementById('productModal').classList.add('open');
 }
 
@@ -355,14 +323,8 @@ function changeGalleryImg(element, src) {
   element.classList.add('active');
 }
 
-function closeProductDetail() {
-  document.getElementById('productModal').classList.remove('open');
-}
-
-document.getElementById('productModal').addEventListener('click', function(e) {
-  if (e.target === this) closeProductDetail();
-});
-
+function closeProductDetail() { document.getElementById('productModal').classList.remove('open'); }
+document.getElementById('productModal').addEventListener('click', function(e) { if (e.target === this) closeProductDetail(); });
 loadProducts();
 </script>
 </body>
