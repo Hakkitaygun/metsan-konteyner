@@ -15,7 +15,7 @@
   <meta name="description" content="Metsan Konteyner - İhtiyacınıza uygun sıfır ve ikinci el yük, ofis ve yaşam konteynerleri. Türkiye'nin her yerine güvenli teslimat.">
   <meta property="og:title" content="Metsan Konteyner – Sağlam ve Hızlı Çözümler">
   <meta property="og:description" content="Sıfır ve ikinci el konteyner satış & kiralama hizmetleri. Fiyat teklifi almak için hemen tıklayın.">
-  <meta property="og:image" content="https://hakkitaygun.github.io/metsan-konteyner/logo.png"> 
+  <meta property="og:image" content="https://hakkitaygun.github.io/metsan-konteyner/logo.PNG"> 
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#F97316"> 
 
@@ -137,7 +137,7 @@
 
 <nav>
   <a href="index.html" style="display: flex; align-items: center; text-decoration: none; background: #FFFFFF; padding: 6px 16px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-    <img src="logo.png" alt="Metsan Logo" style="height: 45px; width: auto; object-fit: contain;">
+    <img src="logo.PNG" alt="Metsan Logo" style="height: 45px; width: auto; object-fit: contain;">
   </a>
   
   <ul class="nav-links">
@@ -267,7 +267,6 @@ function productCardHTML(p) {
 
 // YENİ FİLTRELEME SİSTEMİ
 function filterProducts(filterVal, btnElement) {
-  // Butonların görsel aktiflik durumunu güncelle
   if (btnElement) {
     document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
     btnElement.classList.add('active');
@@ -276,7 +275,6 @@ function filterProducts(filterVal, btnElement) {
   const activeProds = allProducts.filter(p => p.active !== false);
   let filtered = activeProds;
   
-  // Eğer "Tümü" seçilmediyse kategoriye veya duruma göre süz
   if(filterVal !== 'all') {
     filtered = activeProds.filter(p => p.category === filterVal || p.condition === filterVal);
   }
@@ -294,7 +292,6 @@ async function loadProducts() {
     const data = await res.json();
     allProducts = data;
     
-    // Sayfa ilk yüklendiğinde "Tümü" filtresini otomatik çalıştırır
     const firstBtn = document.querySelector('.filter-btn');
     filterProducts('all', firstBtn);
   } catch(e) {
